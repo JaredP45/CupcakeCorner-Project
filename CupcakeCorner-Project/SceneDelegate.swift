@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  CupcakeCorner-Project
 //
-//  Created by student on 4/21/21.
+//  Created by Jared Paubel on 4/21/21.
 //  Copyright © 2021 IN185 BS. All rights reserved.
 //
 
