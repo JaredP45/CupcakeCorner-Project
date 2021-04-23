@@ -8,13 +8,22 @@
 
 import Foundation
 
-class Order: ObservableObject {
+class ObservOrder: ObservableObject {
+    @Published var order: Order
+    
+    init(order: Order) {
+        self.order = order
+    }
+}
+
+
+struct Order: Codable {
     static let types = ["Vanilla", "Strawberry", "Chocolate", "Rainbow"]
 
-    @Published var type = 0
-    @Published var quantity = 3
+    var type = 0
+    var quantity = 3
 
-    @Published var specialRequestEnabled = false {
+    var specialRequestEnabled = false {
         didSet {
             if specialRequestEnabled == false {
                 extraFrosting = false
@@ -22,17 +31,20 @@ class Order: ObservableObject {
             }
         }
     }
-    @Published var extraFrosting = false
-    @Published var addSprinkles = false
+    var extraFrosting = false
+    var addSprinkles = false
     
-    @Published var name = ""
-    @Published var streetAddress = ""
-    @Published var city = ""
-    @Published var zip = ""
+    var name = ""
+    var streetAddress = ""
+    var city = ""
+    var zip = ""
     
     var hasValidAddress: Bool {
-        if name.isEmpty || streetAddress.isEmpty || city.isEmpty || zip.isEmpty {
-            return false
+        if name.trimmingCharacters(in: .whitespaces).isEmpty ||
+           streetAddress.trimmingCharacters(in: .whitespaces).isEmpty ||
+           city.trimmingCharacters(in: .whitespaces).isEmpty ||
+           zip.trimmingCharacters(in: .whitespaces).isEmpty {
+                return false
         }
         return true
     }
